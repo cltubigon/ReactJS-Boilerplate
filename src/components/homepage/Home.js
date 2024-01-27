@@ -3,12 +3,13 @@ import React from "react"
 import { Button } from "@chakra-ui/react"
 import { PiTarget } from "react-icons/pi"
 import { AiOutlineSchedule } from "react-icons/ai"
-import { useDispatch, useSelector } from "react-redux"
-import { SET_TEST_ACTION } from "../../store/actions/testAction"
+import { useStore } from "zustand"
+import utilityStore from "../../store"
 
 const Home = () => {
-  const state = useSelector(state => state.test)
-  console.log({ state })
+  const { schools, increment, decrement } = useStore(utilityStore)
+  const count = schools.grade.section.count
+  console.log({ count })
   return (
     <Flex flexDirection={"column"}>
       <Flex
@@ -16,9 +17,15 @@ const Home = () => {
         h={"100vh"}
         flexDirection={"column"}
         alignItems={"center"}
-        position={'relative'}
+        position={"relative"}
       >
-        <Image src="./assets/mapwithlocation.webp" position={'absolute'} w={'55%'} bottom={0} right={0}  />
+        <Image
+          src="./assets/mapwithlocation.webp"
+          position={"absolute"}
+          w={"55%"}
+          bottom={0}
+          right={0}
+        />
         <Flex
           flexDirection={"column"}
           alignItems={"flex-start"}
@@ -37,7 +44,7 @@ const Home = () => {
             pr={"350px"}
             letterSpacing={"-1.5px"}
           >
-            Dipolog's Premier Solution for All Your Boilerplate!
+            Dipolog's Premier Solution for All Your Boilerplates!
           </Heading>
           <Divider
             w={"10%"}
